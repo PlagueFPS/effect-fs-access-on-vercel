@@ -6,6 +6,7 @@ import { NodeFileSystem } from "@effect/platform-node"
 
 class LoadFontDataError extends Data.TaggedError("LoadFontDataError") <{ message: string, cause?: unknown }> {}
 
+// Always works on Vercel
 export const getFontData = Effect.gen(function* () {
 	const [geistSemiBold, geistBold] = yield* Effect.all(
 		[
@@ -30,6 +31,8 @@ export const getFontData = Effect.gen(function* () {
 	Effect.catchAll(() => Effect.succeed(null)),
 )
 
+// Only works on Vercel when generated at build time
+// Dynamic reads at runtime will not work as the file cannot be found
 export const getFontDataEffectFS = Effect.gen(function* () {
   const fs = yield* FileSystem.FileSystem
   const path = yield* Path.Path

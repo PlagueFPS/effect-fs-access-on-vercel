@@ -11,7 +11,7 @@ export const size = {
  
 export const contentType = 'image/png'
  
-// Image generation
+// This generation has always worked and is here for reference.
 export default async function Image() {
   const fonts = await Effect.runPromise(getFontData)
  

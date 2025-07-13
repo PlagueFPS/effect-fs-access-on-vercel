@@ -11,14 +11,13 @@ export const size = {
  
 export const contentType = 'image/png'
  
-// Image generation
+// This generation does NOT work as expected, likely because it is generated at runtime
 export default async function DynamicImage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
   const fonts = await Effect.runPromise(getFontDataEffectFS)
  
   return new ImageResponse(
     (
-      // ImageResponse JSX element
       <div
         style={{
           fontSize: "4rem",
@@ -43,8 +42,6 @@ export default async function DynamicImage({ params }: { params: Promise<{ id: s
     ),
     // ImageResponse options
     {
-      // For convenience, we can re-use the exported opengraph-image
-      // size config to also set the ImageResponse's width and height.
       ...size,
       fonts: fonts ? [
         {
