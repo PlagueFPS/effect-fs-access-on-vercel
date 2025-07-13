@@ -12,7 +12,7 @@ export const size = {
 export const contentType = 'image/png'
  
 // Image generation
-export default async function Image({ params }: { params: Promise<{ id: string }> }) {
+export default async function DynamicImage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
   const fonts = await Effect.runPromise(getFontDataEffectFS)
  
