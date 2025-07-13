@@ -1,5 +1,13 @@
 import type { Metadata } from "next"
 
+export const generateStaticParams = async () => {
+  return [
+    { id: '1' },
+    { id: '2' },
+    { id: '3' },
+  ]
+}
+
 export const generateMetadata = async ({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> => {
   const { id } = await params
   return {
